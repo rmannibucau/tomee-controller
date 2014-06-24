@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('tomeeControllerApplication', [ 'ngRoute', 'appRouter', 'appControllers', 'appServices' ]);
+angular.module('tomeeControllerApplication', [ 'appRouter', 'appControllers' ]);

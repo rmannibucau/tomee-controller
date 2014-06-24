@@ -62,12 +62,10 @@
 <script src="${pageContext.request.contextPath}/lib/js/sb-admin.js"></script>
 <script src="${pageContext.request.contextPath}/lib/js/angular.min.js"></script>
 <script src="${pageContext.request.contextPath}/lib/js/angular-route.min.js"></script>
-<script src="${pageContext.request.contextPath}/lib/js/angular-resource.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/app/js/environment.js"></script>
 <script src="${pageContext.request.contextPath}/app/js/router.js"></script>
 <script src="${pageContext.request.contextPath}/app/js/controllers.js"></script>
-<script src="${pageContext.request.contextPath}/app/js/services.js"></script>
 <script src="${pageContext.request.contextPath}/app/js/app.js"></script>
 </body>
 

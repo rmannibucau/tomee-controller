@@ -1,8 +1,7 @@
 'use strict';
 
-angular.module('appRouter', ['webAppBridge'])
+angular.module('appRouter', ['webAppBridge', 'ngRoute'])
     .config([ '$routeProvider', 'webappRoot', function ($routeProvider, webappRoot) {
-        webappRoot = webappRoot || '';
         $routeProvider.
             when('/home', {
                 templateUrl: webappRoot + '/app/template/home.html',
