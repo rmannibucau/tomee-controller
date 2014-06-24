@@ -1,0 +1,6 @@
+this folder is used to mock JAX-RS endpoints while developping client side app.
+
+this is intended to be replaced by Java endpoints when stabilized.
+
+
+Summary: this folder should be empty before any release
