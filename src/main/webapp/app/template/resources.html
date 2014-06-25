@@ -12,8 +12,8 @@
             </div>
             <br />
             <div class="list-group" ng-repeat="resource in resources | filter:resourceFilter">
-                <a href="#/resources/{{ resource.url }}" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> {{ resource.id }}
+                <a href="#/resources/{{ resource.id }}" class="list-group-item">
+                    <i class="fa fa-comment fa-fw"></i> {{ resource.resourceId }}
                 </a>
             </div>
         </div>

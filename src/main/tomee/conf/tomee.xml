@@ -1,0 +1,5 @@
+<tomee>
+  <Resource id="jdbc/datasource 1" type="DataSource" />
+  <Resource id="jdbc/blog-ds" type="DataSource" />
+  <Resource id="another datasource" type="DataSource" />
+</tomee>

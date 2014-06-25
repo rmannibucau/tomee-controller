@@ -5,7 +5,7 @@ angular.module('appControllers', ['webAppBridge'])
         // no-op
     }])
     .controller('resourcesController', ['$scope', '$http', 'webappRoot', function ($scope, $http, webappRoot) {
-        $http.get(webappRoot + '/api/resource/ids.json')
+        $http.get(webappRoot + '/api/resource/all.json')
             .success(function(data) {
                 $scope.resources = data;
             });
