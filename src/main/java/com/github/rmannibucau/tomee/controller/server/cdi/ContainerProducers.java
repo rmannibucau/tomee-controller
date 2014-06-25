@@ -1,9 +1,7 @@
 package com.github.rmannibucau.tomee.controller.server.cdi;
 
-import org.apache.openejb.OpenEJBException;
 import org.apache.openejb.assembler.classic.FacilitiesInfo;
 import org.apache.openejb.assembler.classic.OpenEjbConfiguration;
-import org.apache.openejb.assembler.classic.OpenEjbConfigurationFactory;
 import org.apache.openejb.loader.SystemInstance;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -13,11 +11,7 @@ import javax.enterprise.inject.Produces;
 public class ContainerProducers {
     @Produces
     public OpenEjbConfiguration configuration() {
-        try {
-            return component(OpenEjbConfigurationFactory.class).getOpenEjbConfiguration();
-        } catch (final OpenEJBException e) {
-            throw new IllegalStateException(e);
-        }
+        return component(OpenEjbConfiguration.class);
     }
 
     @Produces

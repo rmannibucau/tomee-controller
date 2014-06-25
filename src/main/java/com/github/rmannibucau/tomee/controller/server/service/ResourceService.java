@@ -14,8 +14,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import java.util.Map;
+import java.util.Properties;
 
-// TODO: this is not yet used by the app
 @Path("resource")
 @ApplicationScoped
 public class ResourceService {
@@ -26,7 +26,18 @@ public class ResourceService {
     private JsonBuilderFactory builderFactory;
 
     private JsonObjectBuilder buildResourceObject(final int idx, final ResourceInfo resourceInfo) {
-        return builderFactory.createObjectBuilder().add("id", idx).add("resourceId", resourceInfo.id);
+        JsonObjectBuilder jsonObjectBuilder = builderFactory.createObjectBuilder()
+                .add("id", idx).add("resourceId", resourceInfo.id);
+        JsonArrayBuilder properties = builderFactory.createArrayBuilder();
+        for (final Map.Entry<Object, Object> entry : resourceInfo.properties.entrySet()) {
+            if (String.class.isInstance(entry.getValue()) && !entry.getValue().toString().isEmpty()) {
+                properties = properties.add(
+                    builderFactory.createObjectBuilder()
+                        .add("key", entry.getKey().toString())
+                        .add("value", entry.getValue().toString()));
+            }
+        }
+        return jsonObjectBuilder.add("properties", properties);
     }
 
     @GET

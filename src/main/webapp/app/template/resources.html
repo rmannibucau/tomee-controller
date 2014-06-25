@@ -11,7 +11,7 @@
                 </span>
             </div>
             <br />
-            <div class="list-group" ng-repeat="resource in resources | filter:resourceFilter">
+            <div class="list-group" ng-repeat="resource in resources | filter:resourceFilter | orderBy:'resourceId'">
                 <a href="#/resources/{{ resource.id }}" class="list-group-item">
                     <i class="fa fa-comment fa-fw"></i> {{ resource.resourceId }}
                 </a>
