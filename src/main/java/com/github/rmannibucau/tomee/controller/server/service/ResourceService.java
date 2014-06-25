@@ -13,6 +13,7 @@ import javax.json.JsonObjectBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
@@ -31,10 +32,15 @@ public class ResourceService {
         JsonArrayBuilder properties = builderFactory.createArrayBuilder();
         for (final Map.Entry<Object, Object> entry : resourceInfo.properties.entrySet()) {
             if (String.class.isInstance(entry.getValue()) && !entry.getValue().toString().isEmpty()) {
+                final String key = entry.getKey().toString();
+                final String lowerCase = key.toLowerCase(Locale.ENGLISH);
+                if (lowerCase.contains("password") || lowerCase.contains("pwd")) {
+                    continue; // skip
+                }
                 properties = properties.add(
-                    builderFactory.createObjectBuilder()
-                        .add("key", entry.getKey().toString())
-                        .add("value", entry.getValue().toString()));
+                        builderFactory.createObjectBuilder()
+                            .add("key", key)
+                            .add("value", entry.getValue().toString()));
             }
         }
         return jsonObjectBuilder.add("properties", properties);
