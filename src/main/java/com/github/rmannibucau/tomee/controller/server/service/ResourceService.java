@@ -1,19 +1,14 @@
 package com.github.rmannibucau.tomee.controller.server.service;
 
 import org.apache.openejb.OpenEJBException;
+import org.apache.openejb.assembler.classic.Assembler;
 import org.apache.openejb.assembler.classic.FacilitiesInfo;
 import org.apache.openejb.assembler.classic.ResourceInfo;
-import org.apache.openejb.config.AppModule;
-import org.apache.openejb.config.AutoConfig;
 import org.apache.openejb.config.ConfigurationFactory;
-import org.apache.openejb.config.ReadDescriptors;
-import org.apache.openejb.config.ResourcesModule;
 import org.apache.openejb.config.sys.Resource;
-import org.apache.openejb.config.sys.Resources;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonBuilderFactory;
@@ -24,26 +19,23 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.core.Response;
-import java.io.StringWriter;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Properties;
 
 @Path("resource")
 @ApplicationScoped
 public class ResourceService {
     @Inject
-    private AutoConfig autoConfig;
+    private ConfigurationFactory configurationFactory;
+
+    @Inject
+    private Assembler assembler;
 
     @Inject
     private FacilitiesInfo facilitiesInfo;
 
     @Inject
     private JsonBuilderFactory builderFactory;
-
-    @Inject
-    private ClassLoader classLoader;
 
     @GET
     @Path("all.json")
@@ -69,22 +61,9 @@ public class ResourceService {
     @Path("create")
     public JsonObject createResource(final JsonObject jsonToResource) {
         final Resource resource = jsonToResource(jsonToResource);
-
-        final Resources resources = new Resources();
-        resources.add(resource);
-
-        final ResourcesModule module = new ResourcesModule();
-        module.initResources(resources);
-
-        final AppModule appModule = new AppModule(classLoader, resource.getId());
-        // calling only autoConfig module will not be added so we don't really care about the value
-        // excepted if that's root we don't prefix the app resource and that's what we want
-        appModule.setModuleId("");
-
-        module.initAppModule(appModule);
-
         try {
-            autoConfig.deploy(appModule);
+            final ResourceInfo serviceInfo = configurationFactory.configureService(resource, ResourceInfo.class);
+            assembler.createResource(serviceInfo);
         } catch (final OpenEJBException e) {
             throw new IllegalArgumentException(e);
         }

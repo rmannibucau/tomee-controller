@@ -1,9 +1,9 @@
 package com.github.rmannibucau.tomee.controller.server.cdi;
 
+import org.apache.openejb.assembler.classic.Assembler;
 import org.apache.openejb.assembler.classic.FacilitiesInfo;
 import org.apache.openejb.assembler.classic.OpenEjbConfiguration;
 import org.apache.openejb.assembler.classic.OpenEjbConfigurationFactory;
-import org.apache.openejb.config.AutoConfig;
 import org.apache.openejb.config.ConfigurationFactory;
 import org.apache.openejb.core.ParentClassLoaderFinder;
 import org.apache.openejb.loader.SystemInstance;
@@ -19,6 +19,11 @@ public class ContainerProducers {
     }
 
     @Produces
+    public Assembler assembler() {
+        return component(Assembler.class);
+    }
+
+    @Produces
     public OpenEjbConfiguration configuration() {
         return component(OpenEjbConfiguration.class);
     }
@@ -26,11 +31,6 @@ public class ContainerProducers {
     @Produces
     public ConfigurationFactory configurationFactory() {
         return ConfigurationFactory.class.cast(component(OpenEjbConfigurationFactory.class));
-    }
-
-    @Produces
-    public AutoConfig autoConfig() {
-        return new AutoConfig(configurationFactory());
     }
 
     @Produces
