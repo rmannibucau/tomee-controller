@@ -30,7 +30,7 @@ public class ResourceService {
     private final FacilitiesInfo facilitiesInfo;
     private final JsonBuilderFactory builderFactory;
 
-    public ResourceService() { // CDI needs it to be proxiable
+    protected ResourceService() { // CDI needs it to be proxiable
         this(null, null, null, null);
     }
 
