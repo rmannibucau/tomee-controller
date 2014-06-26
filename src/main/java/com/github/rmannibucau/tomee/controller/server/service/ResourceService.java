@@ -25,17 +25,25 @@ import java.util.Map;
 @Path("resource")
 @ApplicationScoped
 public class ResourceService {
-    @Inject
-    private ConfigurationFactory configurationFactory;
+    private final ConfigurationFactory configurationFactory;
+    private final Assembler assembler;
+    private final FacilitiesInfo facilitiesInfo;
+    private final JsonBuilderFactory builderFactory;
+
+    public ResourceService() { // CDI needs it to be proxiable
+        this(null, null, null, null);
+    }
 
     @Inject
-    private Assembler assembler;
-
-    @Inject
-    private FacilitiesInfo facilitiesInfo;
-
-    @Inject
-    private JsonBuilderFactory builderFactory;
+    public ResourceService(final ConfigurationFactory configurationFactory,
+                           final Assembler assembler,
+                           final FacilitiesInfo facilitiesInfo,
+                           final JsonBuilderFactory builderFactory) {
+        this.configurationFactory = configurationFactory;
+        this.assembler = assembler;
+        this.facilitiesInfo = facilitiesInfo;
+        this.builderFactory = builderFactory;
+    }
 
     @GET
     @Path("all.json")
