@@ -35,24 +35,21 @@
                         <a href="${pageContext.request.contextPath}#/home"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}#/resources"><i class="fa fa-dashboard fa-fw"></i> Resources</a>
+                        <a href="${pageContext.request.contextPath}#/resources">
+                            <i class="fa fa-dashboard fa-fw"></i> Resource Actions
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse out" style="height: auto;">
+                            <li><a href="${pageContext.request.contextPath}#/resources">Resources</a></li>
+                            <li><a href="${pageContext.request.contextPath}#/resources/new">Create</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Home</h1>
-            </div>
-        </div>
-
-        <div class="row" ng-view>
-        TODO
-        </div>
-
+    <div id="page-wrapper" ng-view>
     </div>
 </div>
 

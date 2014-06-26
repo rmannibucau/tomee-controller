@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">New Resource</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <form novalidate role="form">
+                <label>Resource ID:</label>
+                <input ng-model="resource.resourceId" placeholder="Resource ID...">
+                <br />
+                <label>Resource Type (DataSource for instance):</label>
+                <input ng-model="resource.type" placeholder="Resource type...">
+                <br />
+                <br />
+
+                <label>Properties</label><br />
+                <div ng-repeat="property in resource.properties">
+                    <input ng-model="property.key" placeholder="Key...">
+                    <input ng-model="property.value" placeholder="Value...">
+                    <br />
+                </div>
+                <button ng-click="increaseForm()">Add a property</button>
+                <button ng-click="create()">Create</button>
+            </form>
+        </div>
+    </div>
+</div>

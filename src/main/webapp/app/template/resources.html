@@ -1,20 +1,27 @@
-<div class="col-lg-12">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <i class="fa fa-bell fa-fw"></i> TomEE Resources
-        </div>
-        <div class="panel-body" ng-controller="resourcesController">
-            <div class="input-group custom-search-form">
-                <input class="form-control" placeholder="Filter resources..." ng-model="resourceFilter">
-                    <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                </span>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Resources</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bell fa-fw"></i> TomEE Resources
             </div>
-            <br />
-            <div class="list-group" ng-repeat="resource in resources | filter:resourceFilter | orderBy:'resourceId'">
-                <a href="#/resources/{{ resource.id }}" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> {{ resource.resourceId }}
-                </a>
+            <div class="panel-body" ng-controller="resourcesController">
+                <div class="input-group custom-search-form">
+                    <input class="form-control" placeholder="Filter resources..." ng-model="resourceFilter">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+                <br />
+                <div class="list-group" ng-repeat="resource in resources | filter:resourceFilter | orderBy:'resourceId'">
+                    <a href="#/resources/{{ resource.id }}" class="list-group-item">
+                        <i class="fa fa-comment fa-fw"></i> {{ resource.resourceId }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>

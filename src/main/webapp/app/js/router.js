@@ -11,6 +11,10 @@ angular.module('appRouter', ['webAppBridge', 'ngRoute'])
                 templateUrl: webappRoot + 'app/template/resources.html',
                 controller: 'resourcesController'
             }).
+            when('/resources/new', {
+                templateUrl: webappRoot + 'app/template/resource-new.html',
+                controller: 'newResourceController'
+            }).
             when('/resources/:resourceId', {
                 templateUrl: webappRoot + 'app/template/resource-detail.html',
                 controller: 'resourceDetailController'
